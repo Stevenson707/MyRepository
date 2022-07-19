@@ -7,5 +7,4 @@
 
 2. [Видео презентация (нажмите, чтобы посмотреть)](https://drive.google.com/file/d/1Kwn38nIm69MPpaemutlNBHuSfPUn8YvR/view)
 
-3. [PDF-файл презентации](project_diet_presentation.pdf)
-
+3. [PDF-файл презентации (нажмите, чтобы посмотреть)](Project Diet presentation.pdf)
