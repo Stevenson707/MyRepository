@@ -1,0 +1,103 @@
+def main():
+    print('Здравствуйте! Мы очень рады, что Вы выбрали именно нас для сброса лишнего веса!')
+    print('Теперь нам нужно узнать немного о вас)')
+    rost = float(input('Введите свой рост: '))
+    ves = float(input('Введите свой вес: '))
+    protiv = input('Введите действия, которые вам противопоказаны (бег, плавание, поднятие тяжестей,'
+                   ' езда на велосипеде, подтягивание), если таковых нет, то поставте "-": ')
+    diets = [
+        'Вам предложена диета номер 1. Бег 30 минут в день, Плавание в бассейне 60 минут в 5 дней. '
+        'Длительность диеты 30 дней.',
+        'Вам предложена диета номер 2. Подтягивание 3 раза по 3 подхода в день, Плавание в бассейне 90 минут в 5 дней. '
+        'Длительность диеты 30 дней.',
+        'Вам предложена диета номер 3. Езда на велосипеде 40 минут в день, Плавание в бассейне 180 минут в 5 дней. '
+        'Длительность диеты 30 дней.'
+    ]
+    count = -1
+    if rost >= 100 and rost < 150 and ves >= 60:
+        if 'бег' not in protiv and 'плавание' not in protiv and 'поднятие тяжестей' not in protiv\
+                and 'езда на велосипеде' not in protiv and 'подтягивание' not in protiv:
+            count += 1
+
+    elif rost >= 150 and rost < 200 and ves >= 85:
+        if 'бег' not in protiv and 'плавание' not in protiv and 'поднятие тяжестей' not in protiv \
+                and 'езда на велосипеде' not in protiv and 'подтягивание' not in protiv:
+            count += 2
+
+    elif rost >= 200 and ves >= 105:
+        if 'бег' not in protiv and 'плавание' not in protiv and 'поднятие тяжестей' not in protiv \
+                and 'езда на велосипеде' not in protiv and 'подтягивание' not in protiv:
+            count += 3
+    if count == -1:
+        print('Извините, мы не можем подобрать для Вас подходящую диету :(')
+        return
+    otvet = input(f'{diets[count]} Вы согласны? Да / Нет: ')
+    if otvet == 'Да' or otvet == 'да':
+        cal_eat()
+    else:
+        print('Извините, мы не можем подобрать для Вас подходящую диету :(')
+        return
+
+
+def cal_eat():
+    breakfasts = []
+    lunches = []
+    dinners = []
+    weights = []
+    healths = []
+    count = 1
+    print('Каждый день Вы должны вносить калорийность завтрака, обеда и ужина, а так же своё самочувствие и вес. '
+          'Это поможет Нам при создании месячного отчёта.',
+          'Предположим, что сейчас утро и вы хотите позавтракать...', sep='\n')
+    for i in range(30):
+        print(f'День {count}')
+        breakfast = int(input('Напишите пожалуйста количество каллорий, содержащихся в вашем завтраке: '))
+        breakfasts.append(breakfast)
+        lunche = int(input('Напишите пожалуйста количество каллорий, содержащихся в вашем обеде: '))
+        lunches.append(lunche)
+        dinner = int(input('Напишите пожалуйста количество каллорий, содержащихся в вашем ужине: '))
+        dinners.append(dinner)
+        weight = float(input('Напишите пожалуйста свой вес: '))
+        weights.append(weight)
+        health = input('Напишите пожалуйста свое самочувствие(отлично, хорошо, нормально, плохо): ')
+        healths.append(health)
+        count += 1
+    analytics(breakfasts, lunches, dinners, weights, healths)
+
+
+def analytics(breakfasts, lunches, dinners, weights, healths):
+    otl = 0
+    hor = 0
+    norm = 0
+    ploh = 0
+    print('__________')
+    print(f'|Ваш вес составляет: {weights[-1]}')
+    if weights[0] > weights[-1]:
+        print(f'|Поздравляем, Вы похудели на {weights[0] - weights[-1]} кг!')
+    else:
+        print('|Если Вы не похудели, просим продолжать эту диету, пока не достигните своей цели!')
+    print(f'|Средняя кал. завтраков = {sum(breakfasts) / len(breakfasts)}')
+    print(f'|Средняя кал. обедов = {sum(lunches) / len(lunches)}')
+    print(f'|Средняя кал. ужинов = {sum(dinners) / len(dinners)}')
+    for i in healths:
+        if i == 'отлично':
+            otl += 1
+        elif i == 'хорошо':
+            hor += 1
+        elif i == 'нормально':
+            norm += 1
+        elif i == 'плохо':
+            ploh += 1
+    if otl > hor and otl > norm and otl > ploh:
+        print(f'|Общее самочувствие: Отличное')
+    elif hor > otl and hor > norm and hor > ploh:
+        print(f'|Общее самочувствие: Хорошее')
+    elif norm > otl and norm > hor and norm > ploh:
+        print(f'|Общее самочувствие: Нормальное')
+    elif ploh > otl and ploh > hor and ploh > norm:
+        print(f'|Общее самочувствие: Плохое')
+    print('__________')
+
+
+if __name__ == "__main__":
+    main()
